@@ -63,5 +63,5 @@ class AddCategory extends Component{
  * action will be dispatched when it's called
 */
 export default connect(
-    null, { addCategory }
+    null, {addCategory}
 )(AddCategory);
