@@ -1,5 +1,7 @@
 import Category from "./Cateogry";
 
+import AddCategory from '../Components/CategoryComponents/AddCategory';
+
 const TEST_DATA_NUMBER = 5;
 
 export default function fetchTestCategories() {
@@ -11,3 +13,4 @@ export default function fetchTestCategories() {
 
     return TEST_DATA;
 };
+

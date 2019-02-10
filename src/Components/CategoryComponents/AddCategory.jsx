@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addCategory } from '../../Redux/actions'
 
+import fetchTestCategories from '../../Models/TestData';
+
 class AddCategory extends Component{
     constructor(props) {
         super(props);
@@ -9,6 +11,16 @@ class AddCategory extends Component{
             id: '',
             name: '',
             budget: '',
+        }
+    }
+
+    // INPUT TEST DATA TO REDUX STORE
+    componentDidMount() {
+        let TEST_DATA = fetchTestCategories();
+
+        for( let i=0 ; i < TEST_DATA.length ; i++) {
+            this.props.addCategory(TEST_DATA[i]);
+            // console.log(TEST_DATA[i]);
         }
     }
 
