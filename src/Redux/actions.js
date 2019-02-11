@@ -1,7 +1,7 @@
-import { ADD_CATEGORY } from './actionTypes';
+import ActionTypes from './actionTypes';
 
 export const addCategory = category => ({
-    type: ADD_CATEGORY,
+    type: ActionTypes.ADD_CATEGORY,
     payload: {
         id: category.id,
         name: category.name,

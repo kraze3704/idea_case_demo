@@ -1,4 +1,4 @@
-import { ADD_CATEGORY } from "../actionTypes"
+import ActionTypes from "../actionTypes"
 
 const INITIAL_STATE = {
     categoryList: [],
@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 
 export default function(state = INITIAL_STATE, action) {
     switch(action.type) {
-        case ADD_CATEGORY: {
+        case ActionTypes.ADD_CATEGORY: {
             const category = action.payload;
             return  {
                 ...state,
