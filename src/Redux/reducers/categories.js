@@ -2,6 +2,8 @@ import ActionTypes from "../actionTypes"
 
 const INITIAL_STATE = {
     categoryList: [],
+    isLoading: false,
+    // flag to identify if the data is being loaded
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -13,7 +15,32 @@ export default function(state = INITIAL_STATE, action) {
                 categoryList: [...state.categoryList, category],
             }
         }
-    default:
-        return state;
+
+        case ActionTypes.CATEGORY_ADD_REQ: {
+            return {
+                ...state,
+                isLoading: true,
+            }
+            // set loading flag to true
+        }
+        // response for a successful request
+        case ActionTypes.CATEGORY_ADD_OK: {
+            return {
+                ...state,
+                categoryList: action.categoryList,
+                isLoading: false,
+            }
+            // 
+        }
+        // response for a fail request
+        case ActionTypes.CATEGORY_ADD_X: {
+            return {
+                ...state,
+                isLoading: false,
+            }
+            // add error flag maybe?
+        }
+        default:
+            return state;
     }
 }

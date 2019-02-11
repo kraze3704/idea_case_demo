@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CategoryList from '../../Components/CategoryComponents/CategoryList';
-import AddCategory from '../../Components/CategoryComponents/AddCategory';
+import CategoryAdd from '../../Components/CategoryComponents/CategoryAdd';
 
 export default class Categories extends Component {
     /*
@@ -16,7 +16,7 @@ export default class Categories extends Component {
 
         return (
             <div className="Container">
-                <AddCategory />
+                <CategoryAdd />
                 <CategoryList />
             </div>
         );

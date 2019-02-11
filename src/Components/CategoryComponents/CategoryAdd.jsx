@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addCategory } from '../../Redux/actions'
 
-import fetchTestCategories from '../../Models/TestData';
+// import fetchTestCategories from '../../Models/TestData';
 
-class AddCategory extends Component{
+class CategoryAdd extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -14,6 +14,7 @@ class AddCategory extends Component{
         }
     }
 
+/*
     // INPUT TEST DATA TO REDUX STORE
     componentDidMount() {
         let TEST_DATA = fetchTestCategories();
@@ -23,7 +24,7 @@ class AddCategory extends Component{
             // console.log(TEST_DATA[i]);
         }
     }
-
+*/
     _handleUpdate = e => {
         this.setState({ [e.target.name] : e.target.value });
     }
@@ -64,4 +65,4 @@ class AddCategory extends Component{
 */
 export default connect(
     null, {addCategory}
-)(AddCategory);
+)(CategoryAdd);

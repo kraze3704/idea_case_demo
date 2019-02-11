@@ -8,3 +8,6 @@ https://javascript.info/class
 
 redux getting started
 https://redux.js.org/introduction/getting-started
+
+redux devtool for chrome
+https://github.com/zalmoxisus/redux-devtools-extension
