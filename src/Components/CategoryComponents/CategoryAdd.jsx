@@ -8,9 +8,11 @@ class CategoryAdd extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            id: '',
-            name: '',
-            budget: '',
+            newCategoryObject: {
+                id: '',
+                name: '',
+                budget: '',
+            },
         }
     }
 
@@ -26,11 +28,32 @@ class CategoryAdd extends Component{
     }
 */
     _handleUpdate = e => {
-        this.setState({ [e.target.name] : e.target.value });
-    }
+        this.setState({
+            newCategoryObject:{
+                ...this.state.newCategoryObject,
+                [e.target.name] : e.target.value
+        }
+    });
+}
 
     _handleAddCategory = (e) => {
         e.preventDefault();
+
+        const category = this.state.newCategoryObject;
+        console.log(category);
+        this.props.addCategoryLocal(category);
+
+        // other way to reset input boxes?
+        this.setState({
+            newCategoryObject:{
+                id: '',
+                name: '',
+                budget: '',
+            }
+        })
+
+        /*
+         * old add category
 
         // dispatch actions to add category
         this.props.addCategory(this.state);
@@ -38,6 +61,7 @@ class CategoryAdd extends Component{
         this.setState({
             id: '', name: '', budget: '',
         })
+        */
     }
 
     render() {
@@ -47,9 +71,9 @@ class CategoryAdd extends Component{
                  * need study on this!
                  * <input type="text" name="id" onChange={e => this._handleUpdate(e)} value={this.state.id} />
                 */}
-                <p>id: <input type="text" name="id" onChange={this._handleUpdate} value={this.state.id}/></p>
-                <p>name: <input type="text" name="name" onChange={this._handleUpdate} value={this.state.name}/></p>
-                <p>budget: <input type="text" name="budget" onChange={this._handleUpdate} value={this.state.budget}/></p>
+                <p>id: <input type="text" name="id" onChange={this._handleUpdate} value={this.state.newCategoryObject.id}/></p>
+                <p>name: <input type="text" name="name" onChange={this._handleUpdate} value={this.state.newCategoryObject.name}/></p>
+                <p>budget: <input type="text" name="budget" onChange={this._handleUpdate} value={this.state.newCategoryObject.budget}/></p>
                 
                 <button className="_addCategory" onClick={this._handleAddCategory}>ADD</button>
             </div>
@@ -57,6 +81,11 @@ class CategoryAdd extends Component{
     };
 }
 
+const mapDispatch = dispatch => ({
+    addCategoryLocal: (category) => {
+        dispatch(addCategory(category));
+    },
+});
 
 /*
  * pass addCategory action to connect,
@@ -64,5 +93,5 @@ class CategoryAdd extends Component{
  * action will be dispatched when it's called
 */
 export default connect(
-    null, {addCategory}
+    null, mapDispatch
 )(CategoryAdd);

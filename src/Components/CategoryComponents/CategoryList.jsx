@@ -26,7 +26,8 @@ class CategoryList extends Component {
     }
 
     render() {
-        let LIST = this.props.list;
+        let LIST = this.props.categories.categoryList;
+//        console.log(this.props.categories);
 
         return (
             <div className="CategoryList">
@@ -36,8 +37,8 @@ class CategoryList extends Component {
                     </ul>
 */}
                 <ul>
-                    {LIST && LIST.length
-                        ? LIST.map(ITEM => <CategoryItem item={ITEM} />)
+                    {LIST && LIST.length > 0
+                        ? LIST.map((ITEM, index) => <CategoryItem key={index} item={ITEM} />)
                         : `category list is empty!`}
                 </ul>
             </div>
@@ -47,7 +48,7 @@ class CategoryList extends Component {
 
 const mapState = REDUX_STORE => ({
     // list: REDUX_STORE.categories.categoryList,
-    list: REDUX_STORE.categories.categoryList
+    categories: REDUX_STORE.categories
 })
 
 const dispatchToProps = dispatch => ({

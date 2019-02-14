@@ -8,6 +8,9 @@ const INITIAL_STATE = {
 
 export default function(state = INITIAL_STATE, action) {
     switch(action.type) {
+
+        /*
+         * old addCategory
         case ActionTypes.ADD_CATEGORY: {
             const category = action.payload;
             return  {
@@ -15,8 +18,29 @@ export default function(state = INITIAL_STATE, action) {
                 categoryList: [...state.categoryList, category],
             }
         }
+        */
 
         case ActionTypes.CATEGORY_ADD_REQ: {
+            return {
+                ...state,
+                isLoading: true,
+            }
+        }
+        case ActionTypes.CATEGORY_ADD_OK: {
+            return {
+                ...state,
+                categoryList: [...state.categoryList, action.category ],
+                isLoading: false,
+            }
+        }
+        case ActionTypes.CATEGORY_ADD_X: {
+            return {
+                ...state,
+                isLoading: false,
+            }
+        }
+
+        case ActionTypes.CATEGORY_ALL_REQ: {
             return {
                 ...state,
                 isLoading: true,
@@ -24,7 +48,7 @@ export default function(state = INITIAL_STATE, action) {
             // set loading flag to true
         }
         // response for a successful request
-        case ActionTypes.CATEGORY_ADD_OK: {
+        case ActionTypes.CATEGORY_ALL_OK: {
             return {
                 ...state,
                 categoryList: action.categoryList,
@@ -33,7 +57,7 @@ export default function(state = INITIAL_STATE, action) {
             // 
         }
         // response for a fail request
-        case ActionTypes.CATEGORY_ADD_X: {
+        case ActionTypes.CATEGORY_ALL_X: {
             return {
                 ...state,
                 isLoading: false,
