@@ -38,7 +38,7 @@ class CategoryList extends Component {
 */}
                 <ul>
                     {LIST && LIST.length > 0
-                        ? LIST.map((ITEM, index) => <CategoryItem key={index} item={ITEM} />)
+                        ? LIST.map((ITEM, index) => <li key={index}><CategoryItem item={ITEM} /></li>)
                         : `category list is empty!`}
                 </ul>
             </div>

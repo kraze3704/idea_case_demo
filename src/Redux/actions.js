@@ -36,9 +36,9 @@ export function addCategory(category) {
         console.dir(category);
 
         if(!category.id || !category.name || !category.budget) {
-            dispatch(category_ADD_OK(category));
-        } else {
             console.log("X");
+        } else {
+            dispatch(category_ADD_OK(category));
         }
     }
 };

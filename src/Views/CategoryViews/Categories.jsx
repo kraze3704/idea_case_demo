@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CategoryList from '../../Components/CategoryComponents/CategoryList';
 import CategoryAdd from '../../Components/CategoryComponents/CategoryAdd';
+import RandomizedCategory from '../../Components/CategoryComponents/RandomizedCategory';
 
 export default class Categories extends Component {
     /*
@@ -18,6 +19,7 @@ export default class Categories extends Component {
             <div className="Container">
                 <CategoryAdd />
                 <CategoryList />
+                <RandomizedCategory />
             </div>
         );
     }

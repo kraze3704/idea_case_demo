@@ -40,7 +40,7 @@ class CategoryAdd extends Component{
         e.preventDefault();
 
         const category = this.state.newCategoryObject;
-        console.log(category);
+//        console.log(category);
         this.props.addCategoryLocal(category);
 
         // other way to reset input boxes?

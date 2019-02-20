@@ -14,7 +14,7 @@ export default class CategoryItem extends Component{
         let ITEM = this.props.item;
 
         return (
-            <li>{ITEM.name} :: {ITEM.budget}</li>
+            <span>{ITEM.name} :: {ITEM.budget}</span>
         );
     }
 }
