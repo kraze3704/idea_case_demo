@@ -1,5 +1,7 @@
 const ActionTypes = {
-    ADD_CATEGORY: "ADD_CATEGORY",
+    /* ADD_CATEGORY: "ADD_CATEGORY",
+     * old actiontype
+    */
 
     CATEGORY_ADD_REQ: "CATEGORY_ADD_REQ",
     CATEGORY_ADD_OK: "CATEGORY_ADD_OK",
@@ -8,6 +10,10 @@ const ActionTypes = {
     CATEGORY_ALL_REQ: "CATEGORY_ALL_REQ",
     CATEGORY_ALL_OK: "CATEGORY_ALL_OK",
     CATEGORY_ALL_X: "CATEGORY_ALL_X",
+
+    CATEGORY_DEL_REQ: "CATEGORY_DEL_REQ",
+    CATEGORY_DEL_OK: "CATEGORY_DEL_OK",
+    CATEGORY_DEL_X: "CATEGORY_DEL_X",
 }
 
 export default ActionTypes;

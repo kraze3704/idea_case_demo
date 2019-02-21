@@ -5,10 +5,10 @@ export default class CategoryItem extends Component{
     constructor(props) {
         super(props);
     }
-    */
 
     componentDidMount() {
     }
+    */
 
     render() {
         let ITEM = this.props.item;

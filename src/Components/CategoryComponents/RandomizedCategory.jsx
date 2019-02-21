@@ -5,8 +5,8 @@ import CategoryItem from '../CategoryComponents/CategoryItem';
 
 class RandomizedCategory extends Component {
     /*
-     * [ ] randomized single Category shown in CategoryItem Component
-     * [ ] Randomized Category that includes CategoryItem
+     * [X] randomized single Category shown in CategoryItem Component
+     * [X] Randomized Category that includes CategoryItem
      * [X] Randomized Category is connect to Redux
     */
     render() {
@@ -15,7 +15,7 @@ class RandomizedCategory extends Component {
         const LIST_LENGTH = LIST.length;
 
         if (LIST_LENGTH > 0) {
-            const RANDOM_CATEGORY = Math.floor(Math.random() * LIST_LENGTH) + 1;
+            const RANDOM_CATEGORY = Math.floor(Math.random() * LIST_LENGTH);
             return (
                 <div>
                     <CategoryItem item={LIST[RANDOM_CATEGORY]} />

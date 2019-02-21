@@ -5,13 +5,14 @@ TO-DO LIST
 - [X] Add a RandomizedCategory to CategoryViews/Categories.jsx
   - [X] RandomizedCategory is connected to Redux
   - [ ] fetch a random category from redux
-  - instead fetched the whole category to choose one.
-  - improvements?
+    - instead fetched the whole category to choose one.
+    - improvements?
   - [X] RandomizedCategory displays a single category in CategoryItem component
-- [ ] Add delete feature for categories
-  - [ ] create action for deleting categories
-  - [ ] add a delete button to CategoryList?
+- [X] Add delete feature for categories
+  - [X] create action for deleting categories
+  - [X] add a delete button to CategoryList?
   - what if we delete the category that is displayed as 'today's random cateogry'?
+    - new "random category" is selected again. do we want this?
 - [ ] Bootstrap the application
 
 main concepts of react(state, jsx, rendering)

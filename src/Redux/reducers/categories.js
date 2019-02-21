@@ -20,6 +20,26 @@ export default function(state = INITIAL_STATE, action) {
         }
         */
 
+        case ActionTypes.CATEGORY_DEL_REQ: {
+            return {
+                ...state,
+                isLoading: true,
+            }
+        }
+        case ActionTypes.CATEGORY_DEL_OK: {
+            return {
+                ...state,
+                categoryList: state.categoryList.filter(item => item.id != action.categoryId),
+                isLoading: false,
+            }
+        }
+        case ActionTypes.CATEGORY_DEL_X: {
+            return{
+                ...state,
+                isLoading: false,
+            }
+        }
+
         case ActionTypes.CATEGORY_ADD_REQ: {
             return {
                 ...state,

@@ -4,7 +4,7 @@ import CategoryItem from './CategoryItem';
 
 import { connect } from 'react-redux';
 
-import { Category_ALL_FETCH } from '../../Redux/actions'
+import { Category_ALL_FETCH, deleteCategory } from '../../Redux/actions'
 
 class CategoryList extends Component {
     /*
@@ -38,7 +38,11 @@ class CategoryList extends Component {
 */}
                 <ul>
                     {LIST && LIST.length > 0
-                        ? LIST.map((ITEM, index) => <li key={index}><CategoryItem item={ITEM} /></li>)
+                        ? LIST.map((ITEM, index) => 
+                        <li key={index}>
+                            <CategoryItem item={ITEM} />
+                            <button onClick={()=>this.props.deleteCategoryLocal(ITEM.id)}>delete</button>
+                        </li>)
                         : `category list is empty!`}
                 </ul>
             </div>
@@ -55,6 +59,9 @@ const dispatchToProps = dispatch => ({
     TEST_INJECTION: () => {
         dispatch(Category_ALL_FETCH());
     },
+    deleteCategoryLocal: id => {
+        dispatch(deleteCategory(id));
+    }
 });
 
 export default connect(mapState, dispatchToProps)(CategoryList);

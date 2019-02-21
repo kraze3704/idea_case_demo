@@ -71,4 +71,32 @@ export function Category_ALL_FETCH() {
             //console.log('ADD_OK', categoryList);
         }
     }
+};
+
+export const category_DEL_REQ = () => ({
+    type: ActionTypes.CATEGORY_DEL_REQ,
+});
+
+export const category_DEL_OK = (categoryId) => ({
+    type: ActionTypes.CATEGORY_DEL_OK,
+    categoryId,
+});
+
+export const category_DEL_X = () => ({
+    type: ActionTypes.CATEGORY_DEL_X,
+})
+
+export function deleteCategory(categoryId) {
+    return async(dispatch, getState) => {
+        dispatch(category_DEL_REQ());
+        console.dir(categoryId);
+
+        // check store if the id exists to decide
+        // id auto-generation needs to be defined first
+        if ( categoryId !== null ) {
+            dispatch(category_DEL_OK(categoryId));
+        } else {
+            dispatch(category_DEL_X());
+        }
+    }
 }
