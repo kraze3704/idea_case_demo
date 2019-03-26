@@ -12,7 +12,8 @@ class RandomizedCategory extends Component {
     render() {
 
         const LIST = this.props.categories;
-        const LIST_LENGTH = LIST.length;
+        const LIST_LENGTH = (LIST) ? LIST.length : -1;
+        // [X] avoid error when LIST doesn't exist
 
         if (LIST_LENGTH > 0) {
             const RANDOM_CATEGORY = Math.floor(Math.random() * LIST_LENGTH);

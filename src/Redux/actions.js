@@ -1,6 +1,8 @@
+import axios from 'axios';
+
 import ActionTypes from './actionTypes';
 
-import TestCategories from '../Models/TestData';
+// import TestCategories from '../Models/TestData';
 
 /*
  * old addCategory
@@ -61,13 +63,21 @@ export const category_ALL_X = () => ({
 export function Category_ALL_FETCH() {
     return async (dispatch, getState) => {
         dispatch(category_ALL_REQ());
-        const categoryList = TestCategories();
 
-        if(categoryList.length === 0) {
+        /* old mock db example
+         * const categoryList = TestCategories();
+        */
+
+        let fetch_data;
+        await axios.get("http://localhost:8080/category/all")
+            .then(res => fetch_data = {"categoryList": res.data, "status": res.status})
+            .catch(err => console.error(err));
+
+        if(fetch_data.status !== 200) {
             dispatch(category_ALL_X());
             //console.log('ADD_X', categoryList);
         } else {
-            dispatch(category_ALL_OK(categoryList));
+            dispatch(category_ALL_OK(fetch_data.categoryList));
             //console.log('ADD_OK', categoryList);
         }
     }

@@ -29,7 +29,7 @@ export default function(state = INITIAL_STATE, action) {
         case ActionTypes.CATEGORY_DEL_OK: {
             return {
                 ...state,
-                categoryList: state.categoryList.filter(item => item.id != action.categoryId),
+                categoryList: state.categoryList.filter(item => item.id !== action.categoryId),
                 isLoading: false,
             }
         }
