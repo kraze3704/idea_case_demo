@@ -71,7 +71,9 @@ class CategoryAdd extends Component{
                  * need study on this!
                  * <input type="text" name="id" onChange={e => this._handleUpdate(e)} value={this.state.id} />
                 */}
+                {/* category id is generated on server-side
                 <p>id: <input type="text" name="id" onChange={this._handleUpdate} value={this.state.newCategoryObject.id}/></p>
+                */}
                 <p>name: <input type="text" name="name" onChange={this._handleUpdate} value={this.state.newCategoryObject.name}/></p>
                 <p>budget: <input type="text" name="budget" onChange={this._handleUpdate} value={this.state.newCategoryObject.budget}/></p>
                 

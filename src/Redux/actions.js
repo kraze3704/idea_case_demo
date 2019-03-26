@@ -2,6 +2,8 @@ import axios from 'axios';
 
 import ActionTypes from './actionTypes';
 
+const HOST_URL = `http://localhost:8080`;
+
 // import TestCategories from '../Models/TestData';
 
 /*
@@ -34,13 +36,21 @@ export const category_ADD_X = () => ({
 export function addCategory(category) {
     return async (dispatch, getState) => {
         dispatch(category_ADD_REQ());
+        // console.dir(category);
 
-        console.dir(category);
-
-        if(!category.id || !category.name || !category.budget) {
-            console.log("X");
+        if( !category.name || !category.budget ) {
+            dispatch(category_ADD_X());
         } else {
-            dispatch(category_ADD_OK(category));
+            const returnValue = await axios.post(`${HOST_URL}/categoryADD`, category)
+                .then(res => { return {"message": res.data, "status": res.status} })
+                .catch(err => console.error(err));
+                
+            if( returnValue.status === 200) {
+                dispatch(category_ADD_OK(category));
+            }else {
+                console.log(returnValue.message);
+                dispatch(category_ADD_X());
+            }
         }
     }
 };
@@ -68,16 +78,15 @@ export function Category_ALL_FETCH() {
          * const categoryList = TestCategories();
         */
 
-        let fetch_data;
-        await axios.get("http://localhost:8080/category/all")
-            .then(res => fetch_data = {"categoryList": res.data, "status": res.status})
+        const returnValue = await axios.get(`${HOST_URL}/category/all`)
+            .then(res => { return {"categoryList": res.data, "status": res.status} })
             .catch(err => console.error(err));
 
-        if(fetch_data.status !== 200) {
+        if(returnValue.status !== 200) {
             dispatch(category_ALL_X());
             //console.log('ADD_X', categoryList);
         } else {
-            dispatch(category_ALL_OK(fetch_data.categoryList));
+            dispatch(category_ALL_OK(returnValue.categoryList));
             //console.log('ADD_OK', categoryList);
         }
     }
