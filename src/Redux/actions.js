@@ -44,17 +44,16 @@ export function addCategory(category) {
             const returnValue = await axios.post(`${HOST_URL}/categoryADD`, category)
                 .then(res => { return {"message": res.data, "status": res.status} })
                 .catch(err => console.error(err));
-                
+
             if( returnValue.status === 200) {
                 dispatch(category_ADD_OK(category));
-            }else {
+            }else { // if add fails log the error message and dispatch failure function
                 console.log(returnValue.message);
                 dispatch(category_ADD_X());
             }
         }
     }
 };
-
 
 // actions for fetching all the category list from Redux
 export const category_ALL_REQ = () => ({
@@ -108,13 +107,19 @@ export const category_DEL_X = () => ({
 export function deleteCategory(categoryId) {
     return async(dispatch, getState) => {
         dispatch(category_DEL_REQ());
-        console.dir(categoryId);
+        // console.dir(categoryId);
+
+        const returnValue = await axios.get(`${HOST_URL}/categoryDELETE?id=${categoryId}`)
+            .then(res => { return {"message": res.data, "status": res.status}; })
+            .catch(err => console.error(err));
 
         // check store if the id exists to decide
-        // id auto-generation needs to be defined first
-        if ( categoryId !== null ) {
+        // => check the return status code to determine if the id was found
+        // 400: id value missing / 404: data not found with id / 200: delete successful
+        if ( returnValue.status === 200 ) {
             dispatch(category_DEL_OK(categoryId));
         } else {
+            console.log(returnValue.message);
             dispatch(category_DEL_X());
         }
     }

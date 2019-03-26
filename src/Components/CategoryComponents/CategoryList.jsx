@@ -22,7 +22,7 @@ class CategoryList extends Component {
         );
         */
 
-        this.props.TEST_INJECTION();
+        this.props.CategoryFetchAllLocal();
     }
 
     render() {
@@ -41,7 +41,7 @@ class CategoryList extends Component {
                         ? LIST.map((ITEM, index) => 
                         <li key={index}>
                             <CategoryItem item={ITEM} />
-                            <button onClick={()=>this.props.deleteCategoryLocal(ITEM.id)}>delete</button>
+                            <button onClick={()=>this.props.CategoryDeleteLocal(ITEM.id)}>delete</button>
                         </li>)
                         : `category list is empty!`}
                 </ul>
@@ -56,10 +56,10 @@ const mapState = REDUX_STORE => ({
 })
 
 const dispatchToProps = dispatch => ({
-    TEST_INJECTION: () => {
+    CategoryFetchAllLocal: () => {
         dispatch(Category_ALL_FETCH());
     },
-    deleteCategoryLocal: id => {
+    CategoryDeleteLocal: id => {
         dispatch(deleteCategory(id));
     }
 });
