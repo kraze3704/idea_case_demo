@@ -24,9 +24,8 @@ export const category_ADD_REQ = () => ({
     type: ActionTypes.CATEGORY_ADD_REQ,
 });
 
-export const category_ADD_OK = (newCategoryItem) => ({
+export const category_ADD_OK = () => ({
     type: ActionTypes.CATEGORY_ADD_OK,
-    category: newCategoryItem,
 });
 
 export const category_ADD_X = () => ({
@@ -46,7 +45,10 @@ export function addCategory(category) {
                 .catch(err => console.error(err));
 
             if( returnValue.status === 200) {
-                dispatch(category_ADD_OK(category));
+                // send back a success message
+                dispatch(category_ADD_OK());
+                //then fetch the current state again with fetchAll helper function
+                dispatch(Category_ALL_FETCH());
             }else { // if add fails log the error message and dispatch failure function
                 console.log(returnValue.message);
                 dispatch(category_ADD_X());
@@ -95,9 +97,8 @@ export const category_DEL_REQ = () => ({
     type: ActionTypes.CATEGORY_DEL_REQ,
 });
 
-export const category_DEL_OK = (categoryId) => ({
+export const category_DEL_OK = () => ({
     type: ActionTypes.CATEGORY_DEL_OK,
-    categoryId,
 });
 
 export const category_DEL_X = () => ({
@@ -117,7 +118,10 @@ export function deleteCategory(categoryId) {
         // => check the return status code to determine if the id was found
         // 400: id value missing / 404: data not found with id / 200: delete successful
         if ( returnValue.status === 200 ) {
-            dispatch(category_DEL_OK(categoryId));
+            // success return
+            dispatch(category_DEL_OK());
+            // fetch and return the current state of Store
+            dispatch(Category_ALL_FETCH());
         } else {
             console.log(returnValue.message);
             dispatch(category_DEL_X());
