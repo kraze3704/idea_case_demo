@@ -128,3 +128,37 @@ export function deleteCategory(categoryId) {
         }
     }
 }
+
+export const category_FILTER_BY_BUDGET_LIMIT_REQ = () => ({
+    type: ActionTypes.CAT_FILTER_BY_BUDGET_LIMIT_REQ,
+})
+
+export const category_FILTER_BY_BUDGET_LIMIT_OK = (idsSelected) => ({
+    type: ActionTypes.CAT_FILTER_BY_BUDGET_LIMIT_OK,
+    idsSelected,
+})
+
+export const category_FILTER_BY_BUDGET_LIMIT_X = () => ({
+    type: ActionTypes.CAT_FILTER_BY_BUDGET_LIMIT_X,
+})
+
+export function CategoryFilterBudgetLimit(limit) {
+    return async(dispatch, getState) => {
+        // first dispatch REQ action
+        dispatch(category_FILTER_BY_BUDGET_LIMIT_REQ());
+
+        // then call the AJAX with axios(GET, param limit & above = true)
+        const returnValue = await axios.get(`${HOST_URL}/categoryBudgetLimit?limit=${limit}&above=true`)
+            .then(res => {return { "response": res.data, "status": res.status }})
+            .catch(err => console.log(err));
+
+        // then dispatch the OK / X Action
+        // passing the id array to the Redux store "idsSelected" property under 'categories' store option
+        if( returnValue.status === 200 ) {
+            dispatch(category_FILTER_BY_BUDGET_LIMIT_OK(returnValue.response));
+        } else {
+            console.log(returnValue.response);
+            dispatch(category_FILTER_BY_BUDGET_LIMIT_X());
+        }
+    }
+}

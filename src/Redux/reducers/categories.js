@@ -3,22 +3,34 @@ import ActionTypes from "../actionTypes"
 const INITIAL_STATE = {
     categoryList: [],
     isLoading: false,
+    idsSelected: [],
     // flag to identify if the data is being loaded
 };
 
 export default function(state = INITIAL_STATE, action) {
     switch(action.type) {
 
-        /*
-         * old addCategory
-        case ActionTypes.ADD_CATEGORY: {
-            const category = action.payload;
-            return  {
+        case ActionTypes.CAT_FILTER_BY_BUDGET_LIMIT_REQ: {
+            return {
                 ...state,
-                categoryList: [...state.categoryList, category],
+                isLoading: true,
             }
         }
-        */
+
+        case ActionTypes.CAT_FILTER_BY_BUDGET_LIMIT_OK: {
+            return {
+                ...state,
+                idsSelected: action.idsSelected,
+                isLoading: false,
+            }
+        }
+
+        case ActionTypes.CAT_FILTER_BY_BUDGET_LIMIT_X: {
+            return {
+                ...state,
+                isLoading: false,
+            }
+        }
 
         case ActionTypes.CATEGORY_DEL_REQ: {
             return {
@@ -39,6 +51,17 @@ export default function(state = INITIAL_STATE, action) {
                 isLoading: false,
             }
         }
+        
+        /*
+         * old addCategory
+        case ActionTypes.ADD_CATEGORY: {
+            const category = action.payload;
+            return  {
+                ...state,
+                categoryList: [...state.categoryList, category],
+            }
+        }
+        */
 
         case ActionTypes.CATEGORY_ADD_REQ: {
             return {

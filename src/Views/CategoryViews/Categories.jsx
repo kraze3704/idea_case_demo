@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CategoryList from '../../Components/CategoryComponents/CategoryList';
 import CategoryAdd from '../../Components/CategoryComponents/CategoryAdd';
 import RandomizedCategory from '../../Components/CategoryComponents/RandomizedCategory';
+import CategoryFilterByBudgetLimit from '../../Components/CategoryComponents/CategoryFilterByBudgetLimit';
 
 export default class Categories extends Component {
     /*
@@ -20,6 +21,7 @@ export default class Categories extends Component {
                 <CategoryAdd />
                 <CategoryList />
                 <RandomizedCategory />
+                <CategoryFilterByBudgetLimit />
             </div>
         );
     }
