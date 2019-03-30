@@ -31,7 +31,7 @@ export default class Categories extends Component {
         <Router>
             <CategoryAdd />
 
-            <div class="nav-bar">
+            <div className="nav-bar">
                 <nav>
                     <ul>
                         <li><Link to="/">category list</Link></li>

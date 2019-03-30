@@ -9,7 +9,7 @@ class CategoryAdd extends Component{
         super(props);
         this.state = {
             newCategoryObject: {
-                id: '',
+//                id: '',
                 name: '',
                 budget: '',
             },
@@ -31,22 +31,31 @@ class CategoryAdd extends Component{
         this.setState({
             newCategoryObject:{
                 ...this.state.newCategoryObject,
-                [e.target.name] : e.target.value
+                [e.target.name] : e.target.value,
         }
     });
 }
+    _handleUpdateNumber = e => {
+        this.setState({
+            newCategoryObject:{
+                ...this.state.newCategoryObject,
+                [e.target.name] : parseInt(e.target.value),
+            }
+        })
+    }
 
     _handleAddCategory = (e) => {
         e.preventDefault();
 
         const category = this.state.newCategoryObject;
 //        console.log(category);
+console.dir(category);
         this.props.addCategoryLocal(category);
 
         // other way to reset input boxes?
         this.setState({
             newCategoryObject:{
-                id: '',
+//                id: '',
                 name: '',
                 budget: '',
             }
@@ -75,7 +84,7 @@ class CategoryAdd extends Component{
                 <p>id: <input type="text" name="id" onChange={this._handleUpdate} value={this.state.newCategoryObject.id}/></p>
                 */}
                 <p>name: <input type="text" name="name" onChange={this._handleUpdate} value={this.state.newCategoryObject.name}/></p>
-                <p>budget: <input type="text" name="budget" onChange={this._handleUpdate} value={this.state.newCategoryObject.budget}/></p>
+                <p>budget: <input type="number" name="budget" onChange={this._handleUpdateNumber} value={this.state.newCategoryObject.budget}/></p>
                 
                 <button className="_addCategory" onClick={this._handleAddCategory}>ADD</button>
             </div>
